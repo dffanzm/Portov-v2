@@ -1,0 +1,479 @@
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background-color: #180d0c;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  user-select: none;
+}
+
+/* ── Dark vignette on edges ── */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    transparent 40%,
+    rgba(10, 4, 4, 0.65) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Red ambient glow (subtle) ── */
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(180, 30, 20, 0.18) 0%,
+    rgba(140, 20, 15, 0.06) 50%,
+    transparent 75%
+  );
+  z-index: 2;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+/* ============================================
+   LAYER 1 — NAME (BEHIND photo)
+   ============================================ */
+.nameLayer {
+  position: absolute;
+  width: 60%; 
+  top: 43%; 
+  left: 0;
+  transform: translateY(-50%) scale(0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20vh;
+  z-index: 3;
+  pointer-events: none;
+  
+}
+
+.bgNameTop {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 6.5rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(155, 30, 20, 0.75);
+  text-shadow: none;
+  white-space: nowrap;
+  text-align: center;
+  animation: fadeSlideDown 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.1s;
+}
+
+/* ============================================
+   LAYER 3 — PORTFOLIO (IN FRONT of photo)
+   ============================================ */
+.portfolioLayer {
+  position: absolute;
+  width: 60%;
+  top: 42%; /* Shifted up slightly from 50% */
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 45vh;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.bgPortfolio {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 12vw, 13rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(155, 30, 20, 0.7);
+  white-space: nowrap;
+  text-align: center;
+  animation: fadeSlideUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.15s;
+}
+
+/* ============================================
+   LAYER 2 — PROFILE PHOTO (between text layers)
+   Photo anchored at bottom, centered horizontally
+   ============================================ */
+.photoWrapper {
+  position: absolute;
+  bottom: 8vh; /* Shifted up slightly from 0 */
+  left: 44%; /* Shifted to match 60% column */
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.photo {
+  display: block;
+  height: clamp(380px, 76vh, 750px);
+  width: auto;
+  object-fit: contain;
+  /* Mask to blur/fade the bottom of the photo */
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  filter:
+    drop-shadow(0 0 20px rgba(160, 25, 15, 0.25))
+    drop-shadow(0 0 60px rgba(180, 30, 20, 0.1));
+  animation: photoReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.3s;
+}
+
+/* ============================================
+   BOTTOM FADE (Smooth transition to About)
+   ============================================ */
+.bottomFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(to bottom, transparent 0%, #000000 100%);
+  z-index: 8;
+  pointer-events: none;
+}
+
+/* ============================================
+   FOREGROUND UI
+   ============================================ */
+.ui {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* — role label top-left — */
+.label {
+  position: absolute;
+  top: 2.5rem;
+  left: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeIn 1s ease both;
+  animation-delay: 0.6s;
+}
+
+.labelLine {
+  display: inline-block;
+  width: 2.5rem;
+  height: 1.5px;
+  background: #c0392b;
+}
+
+.labelText {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* — nav top-right — */
+.nav {
+  position: absolute;
+  top: 2.5rem;
+  right: 10%; /* Shifted left to align beautifully with the project cards */
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  animation: fadeIn 1s ease both;
+  animation-delay: 0.6s;
+  pointer-events: auto;
+}
+
+.navLink {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navLink:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* — scroll trigger bottom-center — */
+.scrollTrigger {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: fadeIn 1.2s ease both;
+  animation-delay: 1s;
+  text-decoration: none; /* Remove default link underline */
+}
+
+.scrollTrigger:hover .scrollArrow {
+  transform: translateY(4px);
+  color: #c0392b;
+}
+
+.scrollTriggerText {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  color: #c0392b;
+}
+
+.scrollArrow {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid #c0392b; /* Make arrow solid red */
+  border-bottom: 2px solid #c0392b;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  animation: bounceArrow 2s ease-in-out infinite;
+}
+
+/* ============================================
+   HERO PROJECTS AREA (Right Side)
+   ============================================ */
+/* Styling Default untuk Layar Monitor */
+.heroProjectsCol {
+  position: absolute;
+  top: 55%; 
+  right: 10%;
+  transform: translateY(-50%);
+  width: 28%; /* Reduced from 38% so it doesn't become giant on 1080p+ monitors */
+  max-width: 400px; /* Reduced to keep it neat */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+  pointer-events: auto; 
+  z-index: 10;
+  animation: fadeIn 1.2s ease both;
+  animation-delay: 0.8s;
+}
+
+/* Styling Penyesuaian untuk Layar Laptop */
+@media (max-width: 1440px) {
+  .heroProjectsCol {
+    top: 60%; /* Slightly higher so it doesn't overflow bottom */
+    width: 20%; /* Reduced from 24% so it's visibly smaller on laptop */
+    max-width: 300px;
+  }
+}
+
+.heroProjectCard {
+  display: block;
+  background-color: rgba(26, 26, 26, 0.8);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(192, 57, 43, 0.15); /* Subtle red aura behind the photo */
+  transition: box-shadow 0.3s ease;
+}
+
+.heroProjectCard:hover {
+  box-shadow: 0 0 30px rgba(192, 57, 43, 0.3); /* Slightly brighter red aura on hover */
+}
+
+.heroProjectCard:hover .projectImg {
+  transform: scale(1.025); /* Zoom effect exactly as requested */
+}
+
+.heroProjectImage {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Ensure zoom doesn't break rounded corners */
+}
+
+.projectImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Back to cover for a seamless fit since images are correctly proportioned now */
+  display: block;
+  transition: transform 0.7s cubic-bezier(0, 0, 0.2, 1), opacity 0.7s ease, filter 0.7s ease;
+  will-change: transform;
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes photoReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(30px);
+    filter:
+      drop-shadow(0 0 0px rgba(160, 25, 15, 0))
+      drop-shadow(0 0 0px rgba(180, 30, 20, 0));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    filter:
+      drop-shadow(0 0 20px rgba(160, 25, 15, 0.25))
+      drop-shadow(0 0 60px rgba(180, 30, 20, 0.1));
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes bounceArrow {
+  0%, 100% { opacity: 0.4; transform: rotate(45deg) translateY(0); }
+  50%      { opacity: 1;   transform: rotate(45deg) translateY(5px); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1100px) {
+  .nameLayer, .portfolioLayer {
+    width: 55%;
+  }
+  .photoWrapper {
+    left: 40%;
+  }
+  .heroProjectsCol {
+    width: 45%;
+    right: 2%;
+  }
+}
+
+@media (max-width: 992px) {
+  /* Switch to a stacked layout for tablets */
+  .nameLayer, .portfolioLayer {
+    width: 100%;
+    top: 35%;
+  }
+  .photoWrapper {
+    left: 50%;
+    bottom: 25vh;
+  }
+  .heroProjectsCol {
+    top: auto;
+    bottom: 8vh;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 700px;
+    flex-direction: row; /* 2 cards side-by-side */
+    justify-content: center;
+  }
+  .heroProjectCard {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 850px; /* Give more room on mobile */
+  }
+
+  .bgNameTop {
+    font-size: clamp(2.8rem, 10vw, 5rem);
+    -webkit-text-stroke: 1px rgba(155, 30, 20, 0.75);
+    transform: none !important;
+  }
+  .nameLayer {
+    transform: translateY(-50%) scale(1);
+    padding-bottom: 25vh;
+  }
+
+  .bgPortfolio {
+    font-size: clamp(4rem, 18vw, 7rem);
+    -webkit-text-stroke: 1.5px rgba(155, 30, 20, 0.7);
+  }
+
+  .photo {
+    height: clamp(280px, 50vh, 400px);
+  }
+  .photoWrapper {
+    bottom: 28vh;
+  }
+
+  .label {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+
+  .nav {
+    top: 1.5rem;
+    right: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .navLink {
+    font-size: 0.95rem;
+  }
+
+  .heroProjectsCol {
+    flex-direction: row;
+    gap: 1rem;
+    bottom: 10vh;
+  }
+
+  .scrollTrigger {
+    bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 750px;
+  }
+  .bgNameTop {
+    font-size: 9vw;
+  }
+  .bgPortfolio {
+    font-size: 20vw;
+  }
+  .heroProjectsCol {
+    flex-direction: column; /* Stack 2 cards vertically on small phones */
+    bottom: 5vh;
+    width: 90%;
+  }
+  .photoWrapper {
+    bottom: 35vh;
+  }
+}
