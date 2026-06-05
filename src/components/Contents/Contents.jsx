@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { m } from 'framer-motion'
+import { TransitionContext } from '../../App'
+import { m, AnimatePresence } from 'framer-motion'
 import styles from './Contents.module.css'
 import aboutImg from '../../assets/about.jpeg'
 
@@ -17,12 +18,84 @@ const menuItems = [
   { id: 'trace', title: 'LEAVE A TRACE', num: '06', path: '/trace', desc: 'Connect and leave a message' },
 ];
 
+const iconDeckData = [
+  { name: "Figma", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
+  { name: "Canva", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg" },
+  { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
+  { name: "Laravel", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" },
+  { name: "Claude Code", icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwtra0-rW66z5d7Il_SLN_3Af1a6ZS4meQTQ&s" },
+  { name: "Google AI", icon: "https://jvcrzxkmgvnnhrsvqmds.supabase.co/storage/v1/object/public/linkgo-images/tools/logos/original-google_ai_stuio_logo-large-1759571969167.webp" },
+  { name: "Codex", icon: "https://store-images.s-microsoft.com/image/apps.44278.14314868180609929.f8c49912-5781-408f-8963-10487f629f2d.8ac35a1c-f121-477f-9d70-d37926d2aeb5?h=210" }
+];
+
+const IconDeck = React.memo(({ data }) => {
+  return (
+    <div className={styles.iconDeckContainer}>
+      {data.map((tool, idx) => {
+        const midIndex = (data.length - 1) / 2;
+        const rotate = (idx - midIndex) * 4.5; // Perfect slight angle
+        const yOffset = Math.pow(idx - midIndex, 2) * 2.5; // True quadratic rainbow curve!
+        
+        return (
+          <m.div 
+            key={tool.name}
+            className={styles.toolIconWrapper}
+            initial={{ opacity: 0, y: 100, rotate: 0, zIndex: 1 }}
+            animate={{ opacity: 1, y: yOffset, rotate: rotate, zIndex: 1 }}
+            whileHover={{ 
+              y: yOffset - 50, // Jump higher to clear the bigger cards
+              scale: 1.25, 
+              rotate: 0,
+              zIndex: 50,
+              transition: { duration: 0.2, ease: "easeOut" }
+            }}
+            transition={{ 
+              duration: 0.6, 
+              ease: "easeOut",
+              delay: idx * 0.05
+            }}
+            style={{ 
+              transformOrigin: "bottom center"
+            }}
+          >
+            <div className={styles.toolIconCard}>
+              <span className={styles.tooltip}>{tool.name}</span>
+              <img src={tool.icon} alt={tool.name} className={styles.cardIcon} loading="lazy" decoding="async" />
+            </div>
+          </m.div>
+        )
+      })}
+    </div>
+  )
+});
+
 export default function Contents() {
   const navigate = useNavigate();
   const [hoveredMenu, setHoveredMenu] = useState(null);
+  const [isToolsModalOpen, setIsToolsModalOpen] = useState(false);
+  const { setExitState } = useContext(TransitionContext);
   
   const hoveredIndex = menuItems.findIndex(item => item.id === hoveredMenu);
   const activeDesc = hoveredIndex !== -1 ? menuItems[hoveredIndex].desc : '';
+
+  const handleNavigate = (path, id) => {
+    if (id === 'tools') {
+      setIsToolsModalOpen(true);
+      return;
+    }
+    
+    let direction = 'none';
+    if (id === 'about') direction = 'up';
+    if (id === 'experience') direction = 'right';
+    if (id === 'project') direction = 'left';
+    
+    setExitState({ direction });
+    
+    // Tiny delay to ensure state sets before navigation triggers unmount
+    setTimeout(() => {
+      navigate(path);
+    }, 10);
+  };
 
   return (
     <section className={styles.contentsSection} id="contents">
@@ -66,7 +139,7 @@ export default function Contents() {
                   className={`${styles.menuItemWrapper} ${isActive ? styles.active : ''} ${isDimmed ? styles.dimmed : ''}`} 
                   onMouseEnter={() => setHoveredMenu(item.id)}
                 >
-                  <div className={styles.menuItem} onClick={() => navigate(item.path)}>
+                  <div className={styles.menuItem} onClick={() => handleNavigate(item.path, item.id)}>
                     <span className={styles.menuText}>{item.title}</span>
                     <span className={styles.menuNumber}>{item.num}</span>
                   </div>
@@ -108,6 +181,50 @@ export default function Contents() {
         </m.div>
 
       </div>
+
+      {/* TOOLS MODAL */}
+      <AnimatePresence>
+        {isToolsModalOpen && (
+          <m.div
+            className={styles.modalOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsToolsModalOpen(false)}
+          >
+            <m.div
+              className={styles.modalContent}
+              initial={{ y: 50, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 20, opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className={styles.closeBtn}
+                onClick={() => setIsToolsModalOpen(false)}
+              >
+                ✕
+              </button>
+
+              <h2 className={styles.modalTitle}>
+                <span className={styles.alexBrushLetter}>T</span>
+                <span className={styles.timesNewRomanText}>ools</span>
+                <span className={styles.alexBrushLetter} style={{ marginLeft: '1rem' }}>I</span>
+                <span className={styles.alexBrushLetter} style={{ marginLeft: '1rem' }}>U</span>
+                <span className={styles.timesNewRomanText}>se</span>
+              </h2>
+              <p className={styles.modalSubtitle}>
+                The tools I reach for when designing and building digital products.
+              </p>
+
+              <div className={styles.modalDecksWrapper}>
+                <IconDeck data={iconDeckData} />
+              </div>
+            </m.div>
+          </m.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

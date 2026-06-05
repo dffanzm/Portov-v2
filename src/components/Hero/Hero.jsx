@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useInView } from 'framer-motion'
 import styles from './Hero.module.css'
@@ -9,6 +9,16 @@ import project2 from '../../assets/2 (1).webp'
 export default function Hero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.1 });
+  
+  const [navLoaded, setNavLoaded] = useState(false);
+  const [img1Loaded, setImg1Loaded] = useState(false);
+  const [img2Loaded, setImg2Loaded] = useState(false);
+
+  useEffect(() => {
+    // Simulate loading for the text links so they have a skeleton effect
+    const timer = setTimeout(() => setNavLoaded(true), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   const scrollToContents = (e) => {
     e.preventDefault();
@@ -63,15 +73,16 @@ export default function Hero() {
 
         {/* Top-right navigation */}
         <nav className={styles.nav} aria-label="Main navigation">
-          <a href="#contents" onClick={scrollToContents} className={styles.navLink}>CONTENTS</a>
-          <Link to="/project" className={styles.navLink}>PROJECT</Link>
-          <Link to="/experience" className={styles.navLink}>EXPERIENCE</Link>
+          <a href="#contents" onClick={scrollToContents} className={`${styles.navLink} ${!navLoaded ? styles.skeleton : ''}`}>CONTENTS</a>
+          <Link to="/project" className={`${styles.navLink} ${!navLoaded ? styles.skeleton : ''}`}>PROJECT</Link>
+          <Link to="/experience" className={`${styles.navLink} ${!navLoaded ? styles.skeleton : ''}`}>EXPERIENCE</Link>
         </nav>
 
         {/* Right column: Top Projects Placeholder (Images Only) */}
         <div className={styles.heroProjectsCol}>
           <a href="#" className={styles.heroProjectCard} aria-label="Project 1">
             <div className={styles.heroProjectImage}>
+              {!img1Loaded && <div className={styles.skeletonImg} />}
               <img 
                 src={project1}
                 alt="Project 1"
@@ -79,12 +90,15 @@ export default function Hero() {
                 draggable="false"
                 loading="lazy"
                 decoding="async"
+                onLoad={() => setImg1Loaded(true)}
+                style={{ opacity: img1Loaded ? 1 : 0 }}
               />
             </div>
           </a>
 
           <a href="#" className={styles.heroProjectCard} aria-label="Project 2">
             <div className={styles.heroProjectImage}>
+              {!img2Loaded && <div className={styles.skeletonImg} />}
               <img 
                 src={project2}
                 alt="Project 2"
@@ -92,6 +106,8 @@ export default function Hero() {
                 draggable="false"
                 loading="lazy"
                 decoding="async"
+                onLoad={() => setImg2Loaded(true)}
+                style={{ opacity: img2Loaded ? 1 : 0 }}
               />
             </div>
           </a>

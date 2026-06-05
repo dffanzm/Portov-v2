@@ -1,77 +1,154 @@
 import React, { useRef, useState, useEffect, memo } from 'react';
 import { m, useScroll, useSpring, useInView, useTransform } from 'framer-motion';
 import { GraduationCap, Briefcase, Calendar } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import styles from './Experience.module.css';
 import ProfileHeader from '../Shared/ProfileHeader/ProfileHeader';
 import crownImg from '../../assets/crown.png';
-import starImg from '../../assets/star.webp';
 
 // --- DATA ---
-const educationData = [
-  {
-    year: "2020 - 2023",
-    title: "Science Student (MIPA)",
-    subtitle: "MAN 1 Kota Bandung",
-    description: "Studied science at MAN 1 Bandung from 2020 to 2023. Spent those years exploring, learning, and growing — keeping the spirit of seeking knowledge alive.",
+const contentData = {
+  en: {
+    title: { e1: "E", e1Rest: "ducation & ", e2: "E", e2Rest: "xperience" },
+    desc: "Balancing my time between the classroom and technical projects, I focus on turning concepts into working software. Whether I am studying system logic or building applications for clients, my goal is always to connect what I learn with what I build.",
+    arc1Title: "Education Arc",
+    arc2Title: "Experience Arc",
+    education: [
+      {
+        year: "2020 - 2023",
+        title: "Science Student (MIPA)",
+        subtitle: "MAN 1 Kota Bandung",
+        description: "Studied science at MAN 1 Bandung from 2020 to 2023. Spent those years exploring, learning, and growing — keeping the spirit of seeking knowledge alive.",
+      },
+      {
+        year: "2021 - 2023",
+        title: "Pesantren Al Murabby",
+        subtitle: "Al Murabby Boarding Program Committee",
+        description: "Extracurricular Committee focused on student development and religious activities in the boarding school environment. Successfully memorized 2 Juz of the Al-Qur'an.",
+      },
+      {
+        year: "2023 - Present",
+        title: "Informatics Engineering Student",
+        subtitle: "UIN Sunan Gunung Djati Bandung",
+        description: "Always learning, always leveling up — exploring tech, building stuff, fixing what breaks, and improving a bit every day. Current GPA: 3.85.",
+      },
+    ],
+    experience: [
+      {
+        year: "2024 - Present",
+        title: "Esports Community Leader",
+        subtitle: "Senior Himatif",
+        description: "Managing and developing the esports division, focusing on growth, teamwork, and continuous improvement.",
+      },
+      {
+        year: "18 October 2025 - Present",
+        title: "Project Manager",
+        subtitle: "1Slab",
+        description: "Directed end-to-end web development projects at 1Slab, a Jakarta-based agency focused on digital transformation for MSMEs. Managed cross-functional workflows between clients and developers to deliver high-quality, scalable websites. Ensured optimal resource allocation and strict timeline adherence to provide cost-effective solutions with maximum quality.",
+      },
+      {
+        year: "18 October 2025 - Present",
+        title: "Full Stack Developer",
+        subtitle: "Kim Holiday",
+        description: "Built a fresh, modern, and responsive company profile website from scratch — from frontend polish to backend logic. Maintaining and improving the platform with clean code, scalable structure, and consistent UI/UX vibes.",
+      },
+      {
+        year: "10 November 2025 - Present",
+        title: "Backend Developer",
+        subtitle: "Yuk-Mari Project",
+        description: "Developing dynamic admin pages powered by secure API keys — making content management seamless and real-time. Continuously refining the backend architecture for speed, clarity, and long-term scalability.",
+      },
+      {
+        year: "9 December 2025 - 11 July 2026",
+        title: "Full Stack Mobile Developer",
+        subtitle: "Intern Diskominfo Jawa Barat",
+        description: "Spearheaded the development of the 'Silayan' mobile application with a highly structured and scalable architecture. Mentored and led a team of fellow interns, driving the project from conception to a successful deployment on the Google Play Store.",
+      },
+      {
+        year: "15 December 2025 - Present",
+        title: "Full Stack Mobile Developer",
+        subtitle: "Bosh Parfume",
+        description: "Engineered a high-end e-commerce application utilizing a decoupled system architecture with React Native and Expo. Seamlessly integrated RESTful APIs to bridge the mobile client and backend server, ensuring real-time content delivery and system scalability.",
+      },
+      {
+        year: "29 April 2026 - 9 July 2026",
+        title: "Organizing Committee Chairman",
+        subtitle: "IT FAIR XIV V2",
+        description: "Directed the end-to-end execution of IT FAIR XIV V2. Led and coordinated a committee of 59 members, ensuring seamless operational workflows. Architected major event concepts including IT bootcamps and core competitions (UI/UX Design, Hackathon, and Capture The Flag). Successfully secured and collaborated with top-tier industry experts as keynote speakers.",
+      },
+    ]
   },
-  {
-    year: "2021 - 2023",
-    title: "Pesantren Al Murabby",
-    subtitle: "Al Murabby Boarding Program Committee",
-    description: "Extracurricular Committee focused on student development and religious activities in the boarding school environment. Successfully memorized 2 Juz of the Al-Qur'an.",
-  },
-  {
-    year: "2023 - Present",
-    title: "Informatics Engineering Student",
-    subtitle: "UIN Sunan Gunung Djati Bandung",
-    description: "Always learning, always leveling up — exploring tech, building stuff, fixing what breaks, and improving a bit every day. Current GPA: 3.85.",
-  },
-];
-
-const experienceData = [
-  {
-    year: "2024 - Present",
-    title: "Esports Community Leader",
-    subtitle: "Senior Himatif",
-    description: "Managing and developing the esports division, focusing on growth, teamwork, and continuous improvement.",
-  },
-  {
-    year: "18 October 2025 - Present",
-    title: "Project Manager",
-    subtitle: "1Slab",
-    description: "Directed end-to-end web development projects at 1Slab, a Jakarta-based agency focused on digital transformation for MSMEs. Managed cross-functional workflows between clients and developers to deliver high-quality, scalable websites. Ensured optimal resource allocation and strict timeline adherence to provide cost-effective solutions with maximum quality.",
-  },
-  {
-    year: "18 October 2025 - Present",
-    title: "Full Stack Developer",
-    subtitle: "Kim Holiday",
-    description: "Built a fresh, modern, and responsive company profile website from scratch — from frontend polish to backend logic. Maintaining and improving the platform with clean code, scalable structure, and consistent UI/UX vibes.",
-  },
-  {
-    year: "10 November 2025 - Present",
-    title: "Backend Developer",
-    subtitle: "Yuk-Mari Project",
-    description: "Developing dynamic admin pages powered by secure API keys — making content management seamless and real-time. Continuously refining the backend architecture for speed, clarity, and long-term scalability.",
-  },
-  {
-    year: "9 December 2025 - 11 July 2026",
-    title: "Full Stack Mobile Developer",
-    subtitle: "Intern Diskominfo Jawa Barat",
-    description: "Spearheaded the development of the 'Silayan' mobile application with a highly structured and scalable architecture. Mentored and led a team of fellow interns, driving the project from conception to a successful deployment on the Google Play Store.",
-  },
-  {
-    year: "15 December 2025 - Present",
-    title: "Full Stack Mobile Developer",
-    subtitle: "Bosh Parfume",
-    description: "Engineered a high-end e-commerce application utilizing a decoupled system architecture with React Native and Expo. Seamlessly integrated RESTful APIs to bridge the mobile client and backend server, ensuring real-time content delivery and system scalability.",
-  },
-  {
-    year: "29 April 2026 - 9 July 2026",
-    title: "Organizing Committee Chairman",
-    subtitle: "IT FAIR XIV V2",
-    description: "Directed the end-to-end execution of IT FAIR XIV V2. Led and coordinated a committee of 59 members, ensuring seamless operational workflows. Architected major event concepts including IT bootcamps and core competitions (UI/UX Design, Hackathon, and Capture The Flag). Successfully secured and collaborated with top-tier industry experts as keynote speakers.",
-  },
-];
+  id: {
+    title: { e1: "P", e1Rest: "endidikan & ", e2: "P", e2Rest: "engalaman" },
+    desc: "Menyeimbangkan waktu antara ruang kelas dan proyek teknis, saya berfokus pada mengubah konsep menjadi perangkat lunak yang fungsional. Baik saat mempelajari logika sistem maupun membangun aplikasi untuk klien, tujuan saya selalu menghubungkan apa yang saya pelajari dengan apa yang saya bangun.",
+    arc1Title: "Jalur Pendidikan",
+    arc2Title: "Jalur Pengalaman",
+    education: [
+      {
+        year: "2020 - 2023",
+        title: "Siswa MIPA",
+        subtitle: "MAN 1 Kota Bandung",
+        description: "Belajar sains di MAN 1 Bandung dari 2020 hingga 2023. Menghabiskan tahun-tahun tersebut untuk bereksplorasi, belajar, dan berkembang — menjaga semangat menuntut ilmu tetap hidup.",
+      },
+      {
+        year: "2021 - 2023",
+        title: "Pesantren Al Murabby",
+        subtitle: "Komite Program Asrama Al Murabby",
+        description: "Komite Ekstrakurikuler yang berfokus pada pengembangan siswa dan kegiatan keagamaan di lingkungan pesantren. Berhasil menghafal 2 Juz Al-Qur'an.",
+      },
+      {
+        year: "2023 - Sekarang",
+        title: "Mahasiswa Teknik Informatika",
+        subtitle: "UIN Sunan Gunung Djati Bandung",
+        description: "Selalu belajar, selalu meningkatkan kemampuan — mengeksplorasi teknologi, membangun sesuatu, memperbaiki yang rusak, dan berkembang sedikit demi sedikit setiap hari. IPK Saat ini: 3.85.",
+      },
+    ],
+    experience: [
+      {
+        year: "2024 - Sekarang",
+        title: "Esports Community Leader",
+        subtitle: "Senior Himatif",
+        description: "Mengelola dan mengembangkan divisi esports, berfokus pada pertumbuhan, kerja sama tim, dan perbaikan berkelanjutan.",
+      },
+      {
+        year: "18 Oktober 2025 - Sekarang",
+        title: "Project Manager",
+        subtitle: "1Slab",
+        description: "Memimpin proyek pengembangan web dari hulu ke hilir di 1Slab, agensi asal Jakarta yang berfokus pada transformasi digital untuk UMKM. Mengelola alur kerja lintas fungsi antara klien dan pengembang untuk menghasilkan situs web berkualitas tinggi dan dapat diskalakan. Memastikan alokasi sumber daya yang optimal dan kepatuhan tenggat waktu yang ketat untuk memberikan solusi hemat biaya dengan kualitas maksimal.",
+      },
+      {
+        year: "18 Oktober 2025 - Sekarang",
+        title: "Full Stack Developer",
+        subtitle: "Kim Holiday",
+        description: "Membangun website profil perusahaan yang segar, modern, dan responsif dari awal — mulai dari tampilan frontend hingga logika backend. Memelihara dan meningkatkan platform dengan kode yang bersih, struktur yang skalabel, dan konsistensi UI/UX.",
+      },
+      {
+        year: "10 November 2025 - Sekarang",
+        title: "Backend Developer",
+        subtitle: "Yuk-Mari Project",
+        description: "Mengembangkan halaman admin dinamis yang ditenagai oleh API keys yang aman — membuat manajemen konten menjadi mulus dan real-time. Terus menyempurnakan arsitektur backend untuk kecepatan, kejelasan, dan skalabilitas jangka panjang.",
+      },
+      {
+        year: "9 Desember 2025 - 11 Juli 2026",
+        title: "Full Stack Mobile Developer",
+        subtitle: "Intern Diskominfo Jawa Barat",
+        description: "Memelopori pengembangan aplikasi seluler 'Silayan' dengan arsitektur yang sangat terstruktur dan skalabel. Membimbing dan memimpin tim sesama pemagang, mendorong proyek dari tahap konsep hingga berhasil di-deploy di Google Play Store.",
+      },
+      {
+        year: "15 Desember 2025 - Sekarang",
+        title: "Full Stack Mobile Developer",
+        subtitle: "Bosh Parfume",
+        description: "Membangun aplikasi e-commerce high-end dengan arsitektur Decoupled System menggunakan React Native & Expo. Mengintegrasikan RESTful API secara mulus sebagai jembatan antara klien seluler dan server backend, memastikan pengiriman konten real-time dan skalabilitas sistem.",
+      },
+      {
+        year: "29 April 2026 - 9 Juli 2026",
+        title: "Organizing Committee Chairman",
+        subtitle: "IT FAIR XIV V2",
+        description: "Memimpin pelaksanaan IT FAIR XIV V2 dari awal hingga akhir. Memimpin dan mengoordinasikan panitia yang berjumlah 59 orang, memastikan alur kerja operasional yang mulus. Merancang konsep acara besar termasuk bootcamp IT dan kompetisi inti (Desain UI/UX, Hackathon, dan Capture The Flag). Berhasil mengundang dan berkolaborasi dengan pakar industri terkemuka sebagai pembicara utama.",
+      },
+    ]
+  }
+};
 
 // --- TIMELINE ITEM COMPONENT ---
 const TimelineItem = memo(({ data, isCurrent, isActive }) => {
@@ -179,7 +256,7 @@ const TimelineItem = memo(({ data, isCurrent, isActive }) => {
     </m.div>
   );
 }, (prevProps, nextProps) => {
-  return prevProps.isCurrent === nextProps.isCurrent && prevProps.isActive === nextProps.isActive;
+  return prevProps.isCurrent === nextProps.isCurrent && prevProps.isActive === nextProps.isActive && prevProps.data.description === nextProps.data.description;
 });
 
 // --- TIMELINE COLUMN WITH SCROLL PROGRESS ---
@@ -255,6 +332,9 @@ const TimelineColumn = ({ title, icon: Icon, data }) => {
 // --- MAIN COMPONENT ---
 export default function Experience() {
   const containerRef = useRef(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const lang = searchParams.get('lang') === 'id' ? 'id' : 'en';
+  const t = contentData[lang];
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -288,34 +368,40 @@ export default function Experience() {
         <div className={styles.headerLeft}>
           <ProfileHeader />
           <div className={styles.experienceTitle}>
-            <span className={styles.alexBrush}>E</span>
-            <span className={styles.timesNewRoman} style={{ marginLeft: '0.1em' }}>ducation & </span>
-            <span className={styles.alexBrush}>E</span>
-            <span className={styles.timesNewRoman} style={{ marginLeft: '0.1em' }}>xperience</span>
-              <img 
-  src={crownImg} 
-  alt="Crown" 
-  className={styles.crownImg} 
-  draggable="false" 
-  loading="lazy" 
-  decoding="async" 
-/>
+            <span className={styles.alexBrush}>{t.title.e1}</span>
+            <span className={styles.timesNewRoman} style={{ marginLeft: '0.1em' }}>{t.title.e1Rest}</span>
+            <span className={styles.alexBrush}>{t.title.e2}</span>
+            <span className={styles.timesNewRoman} style={{ marginLeft: '0.1em' }}>{t.title.e2Rest}</span>
+            <img 
+              src={crownImg} 
+              alt="Crown" 
+              className={styles.crownImg} 
+              draggable="false" 
+              loading="lazy" 
+              decoding="async" 
+            />
           </div>
           <p className={styles.experienceDesc}>
-            Balancing my time between the classroom and technical projects, I focus on turning concepts into working software. Whether I am studying system logic or building applications for clients, my goal is always to connect what I learn with what I build.
+            {t.desc}
           </p>
         </div>
 
+        {/* RIGHT HEADER FOR LANGUAGE TOGGLE */}
         <div className={styles.headerRight}>
-          <div className={styles.starsContainer}>
-              <img 
-  src={starImg} 
-  alt="Stars" 
-  className={styles.starImg} 
-  draggable="false" 
-  loading="lazy" 
-  decoding="async" 
-/>
+          <div className={styles.langToggleContainer}>
+            <button 
+              className={`${styles.langBtn} ${lang === 'en' ? styles.activeLang : ''}`}
+              onClick={() => setSearchParams({ lang: 'en' })}
+            >
+              EN
+            </button>
+            <span className={styles.langDivider}>/</span>
+            <button 
+              className={`${styles.langBtn} ${lang === 'id' ? styles.activeLang : ''}`}
+              onClick={() => setSearchParams({ lang: 'id' })}
+            >
+              ID
+            </button>
           </div>
         </div>
       </div>
@@ -323,8 +409,16 @@ export default function Experience() {
       {/* TIMELINE CONTENT AREA */}
       <div className={styles.timelineArea}>
         <div className={styles.timelineGrid}>
-          <TimelineColumn title="Education Arc" icon={GraduationCap} data={educationData} />
-          <TimelineColumn title="Experience Arc" icon={Briefcase} data={experienceData} />
+          <TimelineColumn 
+            title={t.arc1Title} 
+            icon={GraduationCap} 
+            data={t.education} 
+          />
+          <TimelineColumn 
+            title={t.arc2Title} 
+            icon={Briefcase} 
+            data={t.experience} 
+          />
         </div>
       </div>
 
