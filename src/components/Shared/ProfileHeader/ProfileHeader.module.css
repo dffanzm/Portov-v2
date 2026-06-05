@@ -1,0 +1,28 @@
+.topLeft {
+  margin-top: 1rem;
+}
+
+.homeLink {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.name {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #e0e0e0;
+  transition: color 0.3s ease;
+}
+
+.homeLink:hover .name {
+  color: #c0392b;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #a0a0a0;
+  max-width: 300px;
+  font-weight: 400;
+}

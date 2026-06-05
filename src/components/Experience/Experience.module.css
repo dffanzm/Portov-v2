@@ -1,0 +1,301 @@
+.pageContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   SIDEBAR SCROLL TRIGGER
+   ============================================ */
+.sidebarWrapper {
+  position: absolute;
+  top: 0;
+  right: 2rem; /* Pindah ke kanan */
+  bottom: 0;
+  width: 30px;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.sidebarTrigger {
+  position: sticky;
+  top: 70vh; /* Moved lower on the screen */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.sidebarText {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: #aaaaaa;
+  text-transform: uppercase;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sidebarLineContainer {
+  width: 2px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.sidebarLineFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #c0392b; /* Theme Red */
+  box-shadow: 0 0 10px rgba(192, 57, 43, 0.8);
+  border-radius: 2px;
+}
+
+/* ============================================
+   HEADER AREA (Scrolls normally now!)
+   ============================================ */
+.headerArea {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  margin-bottom: 6rem;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.experienceTitle {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  margin-left: 2.2rem; 
+  margin-top: 2rem; /* Moved text up */
+  width: fit-content;
+}
+
+.experienceDesc {
+  margin-left: 2.2rem;
+  margin-top: 1.5rem;
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #cccccc;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.alexBrush {
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(4.5rem, 7vw, 7.5rem);
+  color: #c0392b;
+  line-height: 0.7;
+  font-weight: 400;
+  transform: translateY(15px);
+}
+
+.timesNewRoman {
+  font-family: 'Times New Roman MT Condensed', 'Times New Roman', Times, serif;
+  font-stretch: condensed;
+  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+  color: #c0392b;
+  line-height: 0.7;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+}
+
+.crownImg {
+  position: absolute;
+  top: -15px; 
+  right: -55px; 
+  width: 100px;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.headerRight {
+  /* Placeholder for structure */
+}
+
+.starsContainer {
+  position: absolute;
+  top: -1rem; /* Moved star down to align with text */
+  right: -5rem;
+  width: clamp(390px, 35vw, 550px);
+  z-index: 1;
+}
+
+.starImg {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+
+/* ============================================
+   TIMELINE AREA
+   ============================================ */
+.timelineArea {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+.timelineGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  width: 100%;
+}
+
+.timelineSection {
+  margin-bottom: 4rem;
+}
+
+.timelineHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 3rem;
+  padding-left: 1rem;
+  border-left: 4px solid #ffffff;
+}
+
+.timelineContainer {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+/* Line Wrapper */
+.timelineLineWrapper {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  bottom: 0;
+  width: 2px;
+  z-index: 1;
+}
+
+/* Static faint background line */
+.timelineLineBg {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+/* Animated glowing RED scroll indicator line */
+.timelineLineProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #c0392b; /* Theme Red */
+  box-shadow: 0 0 10px 1px rgba(192, 57, 43, 0.6);
+  border-radius: 2px;
+}
+
+/* Traveling Glow Effect */
+.travelingGlow {
+  position: absolute;
+  left: 1px; /* Center of the 2px line */
+  z-index: 30;
+  transform: translate(-50%, -50%);
+}
+
+.travelingGlowInner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(231,76,60,0.9) 0%, rgba(192,57,43,0.7) 50%, rgba(192,57,43,0) 70%);
+  box-shadow: 
+    0 0 20px 6px rgba(231,76,60,0.6),
+    0 0 40px 12px rgba(192,57,43,0.4),
+    0 0 60px 20px rgba(192,57,43,0.2);
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.timelineDot {
+  position: absolute;
+  left: -2.38rem; 
+  top: 1.5rem; 
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  z-index: 2;
+  /* Colors handled by framer-motion inline */
+  background-color: rgba(192, 57, 43, 0.2); 
+  border: 2px solid #c0392b; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.innerDotGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.timelineCard {
+  border-radius: 0.75rem;
+  padding: 1.5rem 2rem;
+  /* transition handled by framer-motion */
+  backdrop-filter: blur(8px);
+}
+
+.timelineYear {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #ffcccc; /* Light red */
+  background: rgba(192, 57, 43, 0.2); /* Red tint */
+  padding: 0.4rem 1rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.timelineTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.timelineSubtitle {
+  font-size: 1rem;
+  color: #aaaaaa;
+  margin-bottom: 1rem;
+}
+
+.timelineDesc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #dddddd;
+}

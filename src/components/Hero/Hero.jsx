@@ -1,16 +1,32 @@
+import React, { useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { useInView } from 'framer-motion'
 import styles from './Hero.module.css'
 import profilePhoto from '../../assets/hero.png'
 import project1 from '../../assets/1 (1).webp'
 import project2 from '../../assets/2 (1).webp'
 
 export default function Hero() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.1 });
+
+  const scrollToContents = (e) => {
+    e.preventDefault();
+    const contents = document.getElementById('contents');
+    if (contents) {
+      contents.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className={styles.hero} id="hero">
+    <section className={styles.hero} id="hero" ref={ref}>
       {/* Ambient vignette overlay */}
       <div className={styles.vignette} aria-hidden="true" />
 
       {/* Red ambient glow behind photo */}
       <div className={styles.glow} aria-hidden="true" />
+
+      <React.Fragment key={isInView ? 'visible' : 'hidden'}>
 
       {/* ── Layer 1: Name text BEHIND photo ── */}
       <div className={styles.nameLayer} aria-hidden="true">
@@ -47,8 +63,9 @@ export default function Hero() {
 
         {/* Top-right navigation */}
         <nav className={styles.nav} aria-label="Main navigation">
-          <a href="#about" className={styles.navLink}>ABOUT</a>
-          <a href="#project" className={styles.navLink}>PROJECT</a>
+          <a href="#contents" onClick={scrollToContents} className={styles.navLink}>CONTENTS</a>
+          <Link to="/project" className={styles.navLink}>PROJECT</Link>
+          <Link to="/experience" className={styles.navLink}>EXPERIENCE</Link>
         </nav>
 
         {/* Right column: Top Projects Placeholder (Images Only) */}
@@ -60,7 +77,7 @@ export default function Hero() {
                 alt="Project 1"
                 className={styles.projectImg}
                 draggable="false"
-                fetchPriority="low"
+                loading="lazy"
                 decoding="async"
               />
             </div>
@@ -73,7 +90,7 @@ export default function Hero() {
                 alt="Project 2"
                 className={styles.projectImg}
                 draggable="false"
-                fetchPriority="low"
+                loading="lazy"
                 decoding="async"
               />
             </div>
@@ -81,10 +98,12 @@ export default function Hero() {
         </div>
 
         {/* Scroll trigger */}
-        <a href="#about" className={styles.scrollTrigger} aria-label="Scroll to About section">
+        <a href="#contents" onClick={scrollToContents} className={styles.scrollTrigger} aria-label="Scroll to Contents section">
           <span className={styles.scrollTriggerText}>SCROLL</span>
+          <span className={styles.scrollArrow}></span>
         </a>
       </div>
+      </React.Fragment>
     </section>
   )
 }

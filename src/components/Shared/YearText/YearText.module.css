@@ -1,0 +1,13 @@
+.bottomRightYear {
+  position: absolute;
+  bottom: 1rem;
+  right: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.year {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #e0e0e0;
+}

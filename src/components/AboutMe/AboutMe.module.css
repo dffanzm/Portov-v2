@@ -1,0 +1,283 @@
+.aboutMeSection {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  position: relative; /* Needed for absolute positioning of toggle */
+}
+
+/* Language Toggle Button */
+.langToggleContainer {
+  position: absolute;
+  top: 3rem;
+  right: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.3rem 0.5rem;
+  border-radius: 50px;
+  z-index: 100;
+}
+
+.langBtn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.langBtn:hover {
+  color: #ffffff;
+}
+
+.activeLang {
+  background: #c0392b;
+  color: #ffffff;
+}
+
+.langDivider {
+  color: rgba(255, 255, 255, 0.2);
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.9rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 1.2fr) 1fr;
+  gap: 4rem;
+  min-height: 80vh;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80vh;
+  position: sticky;
+  top: 10vh;
+}
+
+.bottomLeft {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.aboutTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.word {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.alexBrush {
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(4rem, 6vw, 6rem);
+  color: #c0392b;
+  line-height: 0.7;
+  font-weight: 400;
+  transform: translateY(10px);
+}
+
+.timesNewRoman {
+  font-family: 'Times New Roman MT Condensed', 'Times New Roman', Times, serif;
+  font-stretch: condensed;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  color: #c0392b;
+  line-height: 0.7;
+  font-weight: normal;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 380px;
+  font-weight: 400;
+}
+
+.middleColumn {
+  
+}
+
+.rightContentTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  width: 170%;
+}
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  max-width: 480px; 
+  margin-left: -370px;
+  margin-top: 50px;
+}
+
+.descriptionText {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  text-align: left;
+  width: 100%;
+}
+
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timelineItem {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+.iconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24px;
+}
+
+.iconBox {
+  color: #c0392b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.15rem;
+}
+
+.timelineLine {
+  width: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  flex-grow: 1;
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+  border-radius: 2px;
+}
+
+.timelineText {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding-bottom: 2.5rem;
+}
+
+.timelineItem:last-child .timelineText {
+  padding-bottom: 0;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.discussBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 0.9rem 2.2rem;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  margin-top: 3rem;
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.05);
+  animation: floatSubtle 3s ease-in-out infinite;
+}
+
+@keyframes floatSubtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.discussBtn:hover {
+  background: linear-gradient(
+    135deg, 
+    rgba(192, 57, 43, 0.9) 0%, 
+    rgba(192, 57, 43, 0.5) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  box-shadow: 
+    0 8px 25px rgba(192, 57, 43, 0.5),
+    inset 0 0 15px rgba(255, 255, 255, 0.2);
+  animation: none;
+  transform: translateY(-3px);
+}
+
+.discussBtn:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 10px rgba(192, 57, 43, 0.3);
+}
+
+.btnIcon {
+  transition: transform 0.3s ease;
+}
+
+.discussBtn:hover .btnIcon {
+  transform: translateX(5px);
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes content to top, 2025 to bottom */
+  height: 80vh;
+  position: sticky;
+  top: 10vh;
+}
