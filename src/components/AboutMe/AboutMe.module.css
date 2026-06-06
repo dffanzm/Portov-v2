@@ -278,3 +278,142 @@
   position: sticky;
   top: 10vh;
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS (Additive Queries)
+   ============================================ */
+
+/* TABLET (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+  }
+  .rightColumn {
+    position: static;
+    height: auto;
+  }
+  .rightContentTop {
+    width: 100%;
+  }
+  .descriptionBlock {
+    margin-left: 0;
+    max-width: 100%;
+  }
+}
+
+/* MOBILE (max-width: 768px) */
+@media (max-width: 768px) {
+  .aboutMeSection {
+    padding: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    gap: 0;
+    width: 100%;
+  }
+  
+  .leftColumn {
+    height: auto;
+    position: relative;
+    top: 0;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .langToggleContainer {
+    position: static;
+    align-self: flex-end;
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .aboutTitle {
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  
+  .word {
+    white-space: nowrap;
+  }
+  
+  .alexBrush {
+    font-size: clamp(3rem, 10vw, 4.5rem);
+    transform: translateY(6px);
+  }
+  
+  .timesNewRoman {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+  }
+  
+  .description {
+    max-width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .rightColumn {
+    position: relative;
+    height: auto;
+    top: 0;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .rightContentTop {
+    width: 100%;
+    align-items: center;
+  }
+
+  .descriptionBlock {
+    margin-left: 0;
+    margin-top: 1rem;
+    max-width: 100%;
+  }
+
+  .descriptionText {
+    text-align: center;
+  }
+
+  .timelineList {
+    margin-top: 2rem;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .buttonWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .discussBtn {
+    margin-top: 1rem;
+  }
+}
+
+/* SMALL MOBILE (max-width: 480px) */
+@media (max-width: 480px) {
+  .alexBrush {
+    font-size: 2.8rem;
+  }
+  .timesNewRoman {
+    font-size: 1.8rem;
+  }
+  .timelineItem {
+    gap: 1rem;
+  }
+  .timelineText {
+    font-size: 0.85rem;
+  }
+}

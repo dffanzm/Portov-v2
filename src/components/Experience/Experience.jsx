@@ -330,25 +330,41 @@ const TimelineColumn = ({ title, icon: Icon, data }) => {
 };
 
 // --- MAIN COMPONENT ---
+import SEO from '../Shared/SEO/SEO';
+
 export default function Experience() {
-  const containerRef = useRef(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const lang = searchParams.get('lang') === 'id' ? 'id' : 'en';
-  const t = contentData[lang];
   
+  const t = contentData[lang];
+
+  // Scroll logic for timeline fill
+  const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start end", "end start"]
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100, damping: 30, restDelta: 0.001
+  const springProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
   });
 
-  const scrollLineHeight = useTransform(smoothProgress, [0, 1], ["0px", "80px"]);
+  const toggleLang = (newLang) => {
+    setSearchParams({ lang: newLang }, { replace: true });
+  };
+
+  const scrollLineHeight = useTransform(springProgress, [0, 1], ["0px", "80px"]);
 
   return (
     <section className={styles.pageContainer} ref={containerRef}>
+      <SEO 
+        title="Experience & Education | Daffa Najmudin Hanif" 
+        description={t.desc}
+      />
+      {/* Dynamic Background Noise/Gradient */}
+      <div className={styles.backgroundNoise} />
       
       {/* SIDEBAR SCROLL TRIGGER */}
       <div className={styles.sidebarWrapper}>

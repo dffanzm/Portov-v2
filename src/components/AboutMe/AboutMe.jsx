@@ -5,6 +5,7 @@ import styles from './AboutMe.module.css'
 import ProfileHeader from '../Shared/ProfileHeader/ProfileHeader'
 import RoleTypewriter from '../Shared/RoleTypewriter/RoleTypewriter'
 import YearText from '../Shared/YearText/YearText'
+import SEO from '../Shared/SEO/SEO'
 
 export default function AboutMe() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -19,24 +20,38 @@ export default function AboutMe() {
       timeline1: "Turning ideas into functional code",
       timeline2: "Based in Indonesia",
       timeline3: "Open to freelance & collaborations",
-      button: "Discuss a Project"
+      button: "Let's discuss",
     },
     id: {
       title1: { first: 'T', rest: 'entang' },
       title2: { first: 'S', rest: 'aya' },
-      desc1: "Saya adalah seorang software developer yang gemar meracik solusi digital fungsional dan praktis. Berfokus pada logika sistem dan pemecahan masalah, saya memastikan setiap proyek yang saya rancang mampu memberikan pengalaman yang mulus bagi penggunanya.",
-      desc2: "Solusi yang saya bangun memadukan logika teknis dengan struktur praktis, menyeimbangkan performa dan kejelasan untuk menghasilkan aplikasi yang mampu memecahkan masalah nyata. Berbekal semangat dalam kerja sama tim dan keinginan untuk terus belajar, saya memandang setiap proyek sebagai kesempatan untuk membangun sesuatu yang benar-benar bermanfaat.",
+      desc1: "Saya adalah seorang software developer yang senang menciptakan solusi digital yang praktis dan fungsional. Dengan fokus pada logika sistem dan kecintaan memecahkan masalah, saya memastikan setiap proyek yang saya bangun terhubung dengan baik dengan penggunanya.",
+      desc2: "Solusi yang saya buat memadukan logika teknis dengan struktur praktis, menyeimbangkan performa dan kejelasan untuk menghasilkan aplikasi yang memecahkan masalah nyata. Memiliki *passion* pada kerja sama tim dan pembelajaran berkelanjutan, saya menjadikan setiap proyek sebagai peluang untuk membangun sesuatu yang benar-benar bermanfaat.",
       timeline1: "Mengubah ide menjadi kode fungsional",
       timeline2: "Berbasis di Indonesia",
       timeline3: "Terbuka untuk freelance & kolaborasi",
-      button: "Diskusikan Proyek"
+      button: "Mari berdiskusi",
     }
   }
+
+  const currentContent = content[lang]
+
+  const toggleLang = (newLang) => {
+    setSearchParams({ lang: newLang }, { replace: true })
+  }
+
+  const handleDiscussClick = () => {
+    window.open('https://wa.me/6283115450410', '_blank');
+  };
 
   const t = content[lang]
 
   return (
     <section className={styles.aboutMeSection}>
+      <SEO 
+        title={`About Me | Daffa Najmudin Hanif`}
+        description={currentContent.desc1}
+      />
       {/* Language Toggle Button */}
       <div className={styles.langToggleContainer}>
         <button 

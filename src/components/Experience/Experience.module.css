@@ -328,3 +328,95 @@
   line-height: 1.6;
   color: #dddddd;
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS (Additive Queries)
+   ============================================ */
+
+/* TABLET (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .pageContainer {
+    padding: 3rem;
+  }
+  .timelineGrid {
+    gap: 2rem;
+  }
+}
+
+/* MOBILE (max-width: 768px) */
+@media (max-width: 768px) {
+  .pageContainer {
+    padding: 1.5rem;
+  }
+  
+  .headerArea {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .headerLeft {
+    align-items: center;
+  }
+  
+  .experienceTitle {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  
+  .alexBrush {
+    font-size: clamp(3.5rem, 12vw, 5rem);
+    transform: translateY(10px);
+  }
+  
+  .timesNewRoman {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+  }
+  
+  .experienceDesc {
+    margin-left: 0;
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .crownImg {
+    width: 60px;
+    right: -20px;
+    top: -10px;
+  }
+  
+  .headerRight {
+    justify-content: center;
+  }
+  
+  .timelineGrid {
+    grid-template-columns: 1fr; /* Stack columns vertically */
+    gap: 3rem;
+  }
+  
+  .timelineHeader {
+    font-size: 1.4rem;
+  }
+  
+  .timelineCard {
+    padding: 1.2rem;
+  }
+  
+  .sidebarWrapper {
+    display: none; /* Hide vertical scroll indicator on mobile */
+  }
+}
+
+/* SMALL MOBILE (max-width: 480px) */
+@media (max-width: 480px) {
+  .alexBrush {
+    font-size: 3rem;
+  }
+  .timesNewRoman {
+    font-size: 2rem;
+  }
+  .timelineDesc {
+    font-size: 0.85rem;
+  }
+}

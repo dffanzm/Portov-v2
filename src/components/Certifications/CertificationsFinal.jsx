@@ -8,6 +8,7 @@ import cert2 from '../../assets/assets-sertif/2.webp';
 import cert3 from '../../assets/assets-sertif/3.webp';
 import cert4 from '../../assets/assets-sertif/4.webp';
 import StylishCarousel from '../Shared/StylishCarousel/StylishCarousel';
+import SEO from '../Shared/SEO/SEO';
 
 export default function Certifications() {
   useEffect(() => {
@@ -28,6 +29,10 @@ export default function Certifications() {
 
   return (
     <section className={styles.pageContainer}>
+      <SEO 
+        title="Certifications | Daffa Najmudin Hanif" 
+        description="View my professional credentials, IT competition awards, and certifications from Oracle Academy and more."
+      />
       <div className={styles.leftColumn}>
         <ProfileHeader />
         

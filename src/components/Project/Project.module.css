@@ -371,25 +371,45 @@
   margin: 1rem 0;
 }
 
-/* Responsive */
+/* ============================================
+   MOBILE RESPONSIVENESS (Additive Queries)
+   ============================================ */
 @media (max-width: 1024px) {
   .gridContainer {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 300px;
+    padding: 0 3rem 3rem 3rem;
   }
   .itemTall {
     grid-row: span 1; /* Reset on small screens to flow better */
+  }
+  .itemLarge {
+    grid-column: span 2;
+    grid-row: span 1;
   }
 }
 
 @media (max-width: 768px) {
   .topBar {
-    padding: 2rem;
+    padding: 1.5rem;
+  }
+  .titleArea {
+    margin-top: 1rem;
+  }
+  .alexBrushLetter {
+    font-size: clamp(3.5rem, 12vw, 5rem);
+    transform: translateY(10px);
+  }
+  .timesNewRomanText {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
   }
   .descArea {
     flex-direction: column;
     gap: 2rem;
-    padding: 2rem;
+    padding: 1.5rem;
+  }
+  .descLeft, .descRight {
+    max-width: 100%;
   }
   .descRight {
     text-align: left;
@@ -397,9 +417,26 @@
   .gridContainer {
     grid-template-columns: 1fr;
     grid-auto-rows: 300px;
+    padding: 0 1.5rem 3rem 1.5rem;
   }
-  .itemTall, .itemWide, .itemSquare {
+  .itemTall, .itemWide, .itemSquare, .itemLarge {
     grid-column: span 1;
     grid-row: span 1;
+  }
+  .modalContent {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .alexBrushLetter {
+    font-size: 3rem;
+  }
+  .timesNewRomanText {
+    font-size: 2rem;
+  }
+  .gridContainer {
+    grid-auto-rows: 250px;
   }
 }

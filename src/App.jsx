@@ -12,6 +12,7 @@ const AboutMePage = lazy(() => import('./components/AboutMe/AboutMe'))
 const ExperiencePage = lazy(() => import('./components/Experience/Experience'))
 const ProjectPage = lazy(() => import('./components/Project/Project'))
 const CertificationsFinal = lazy(() => import('./components/Certifications/CertificationsFinal'))
+const LeaveTracePage = lazy(() => import('./components/LeaveTrace/LeaveTrace'))
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -49,23 +50,28 @@ function AnimatedRoutes() {
         <Route path="/experience" element={<PageTransition direction={exitState.direction}><ExperiencePage /></PageTransition>} />
         <Route path="/project" element={<PageTransition direction={exitState.direction}><ProjectPage /></PageTransition>} />
         <Route path="/certifications" element={<PageTransition direction={exitState.direction}><CertificationsFinal /></PageTransition>} />
+        <Route path="/trace" element={<PageTransition direction={exitState.direction}><LeaveTracePage /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   )
 }
 
+import { HelmetProvider } from 'react-helmet-async';
+
 function App() {
   const [exitState, setExitState] = useState({ direction: 'none' });
 
   return (
-    <TransitionContext.Provider value={{ exitState, setExitState }}>
-      <Suspense fallback={<div style={{ height: '100vh', background: '#000' }} />}>
-        <ScrollToTop />
-        <LazyMotion features={domAnimation}>
-          <AnimatedRoutes />
-        </LazyMotion>
-      </Suspense>
-    </TransitionContext.Provider>
+    <HelmetProvider>
+      <TransitionContext.Provider value={{ exitState, setExitState }}>
+        <Suspense fallback={<div style={{ height: '100vh', background: '#000' }} />}>
+          <ScrollToTop />
+          <LazyMotion features={domAnimation}>
+            <AnimatedRoutes />
+          </LazyMotion>
+        </Suspense>
+      </TransitionContext.Provider>
+    </HelmetProvider>
   )
 }
 

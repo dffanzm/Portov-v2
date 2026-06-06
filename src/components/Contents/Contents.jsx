@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { TransitionContext } from '../../App'
 import { m, AnimatePresence } from 'framer-motion'
 import styles from './Contents.module.css'
-import aboutImg from '../../assets/about.jpeg'
+import aboutImg from '../../assets/about.webp'
 
 import ProfileHeader from '../Shared/ProfileHeader/ProfileHeader'
 import RoleTypewriter from '../Shared/RoleTypewriter/RoleTypewriter'
@@ -69,10 +69,13 @@ const IconDeck = React.memo(({ data }) => {
   )
 });
 
+import SEO from '../Shared/SEO/SEO'
+
 export default function Contents() {
   const navigate = useNavigate();
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [isToolsModalOpen, setIsToolsModalOpen] = useState(false);
+  const [isExpandingTrace, setIsExpandingTrace] = useState(false);
   const { setExitState } = useContext(TransitionContext);
   
   const hoveredIndex = menuItems.findIndex(item => item.id === hoveredMenu);
@@ -81,6 +84,12 @@ export default function Contents() {
   const handleNavigate = (path, id) => {
     if (id === 'tools') {
       setIsToolsModalOpen(true);
+      return;
+    }
+    
+    if (id === 'trace') {
+      setExitState({ direction: 'none' });
+      setIsExpandingTrace(true);
       return;
     }
     
@@ -100,6 +109,10 @@ export default function Contents() {
 
   return (
     <section className={styles.contentsSection} id="contents">
+      <SEO 
+        title="Contents | Daffa Najmudin Hanif" 
+        description="Navigate through my portfolio. Explore my experience, projects, tools, certifications, and get to know me better."
+      />
       <div className={styles.container}>
         
         {/* LEFT COLUMN */}
@@ -224,6 +237,31 @@ export default function Contents() {
               </div>
             </m.div>
           </m.div>
+        )}
+      </AnimatePresence>
+
+      {/* TRACE EXPAND ANIMATION */}
+      <AnimatePresence>
+        {isExpandingTrace && (
+          <m.div
+            style={{
+              position: 'fixed',
+              top: '50%',
+              left: '50%',
+              width: '100px',
+              height: '100px',
+              backgroundColor: '#000000',
+              borderRadius: '50%',
+              zIndex: 9999,
+              pointerEvents: 'none',
+            }}
+            initial={{ x: '-50%', y: '-50%', scale: 0 }}
+            animate={{ x: '-50%', y: '-50%', scale: 40 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            onAnimationComplete={() => {
+              navigate('/trace');
+            }}
+          />
         )}
       </AnimatePresence>
     </section>

@@ -69,3 +69,59 @@
   position: sticky;
   top: 10vh;
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS (Additive Queries)
+   ============================================ */
+@media (max-width: 1024px) {
+  .pageContainer {
+    grid-template-columns: 1fr 1.5fr; 
+    gap: 2rem;
+    padding: 2rem;
+  }
+  .rightColumn {
+    display: none; 
+  }
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    height: auto;
+    min-height: 100vh;
+    position: relative;
+    overflow-y: visible;
+  }
+  
+  .leftColumn {
+    height: auto;
+    position: relative;
+    top: 0;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .alexBrushLetter {
+    font-size: clamp(3.5rem, 12vw, 5rem);
+    transform: translateY(6px);
+  }
+  
+  .timesNewRomanText {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+  }
+  
+  .middleColumn {
+    padding: 1rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .alexBrushLetter {
+    font-size: 3rem;
+  }
+  .timesNewRomanText {
+    font-size: 2rem;
+  }
+}

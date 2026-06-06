@@ -98,6 +98,8 @@ const projectsData = [
   }
 ];
 
+import SEO from '../Shared/SEO/SEO';
+
 export default function Project() {
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -136,6 +138,10 @@ export default function Project() {
 
   return (
     <section className={styles.pageContainer}>
+      <SEO 
+        title="Projects | Daffa Najmudin Hanif" 
+        description="Explore my recent projects, including web applications, browser extensions, and mobile apps built with React, Tailwind, and more."
+      />
       
       {/* HEADER SECTION */}
       <div className={styles.topBar}>

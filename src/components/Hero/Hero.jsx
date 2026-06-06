@@ -1,14 +1,18 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useRef, useState, useEffect, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useInView } from 'framer-motion'
 import styles from './Hero.module.css'
 import profilePhoto from '../../assets/hero.png'
 import project1 from '../../assets/1 (1).webp'
 import project2 from '../../assets/2 (1).webp'
+import SEO from '../Shared/SEO/SEO'
+import { TransitionContext } from '../../App'
 
 export default function Hero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.1 });
+  const navigate = useNavigate();
+  const { setExitState } = useContext(TransitionContext);
   
   const [navLoaded, setNavLoaded] = useState(false);
   const [img1Loaded, setImg1Loaded] = useState(false);
@@ -30,6 +34,10 @@ export default function Hero() {
 
   return (
     <section className={styles.hero} id="hero" ref={ref}>
+      <SEO 
+        title="Daffa Najmudin Hanif — Portfolio" 
+        description="Creative full-stack developer and UI/UX designer. Explore my portfolio, projects, and professional journey."
+      />
       {/* Ambient vignette overlay */}
       <div className={styles.vignette} aria-hidden="true" />
 

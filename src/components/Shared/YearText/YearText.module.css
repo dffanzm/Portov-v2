@@ -11,3 +11,12 @@
   font-weight: 500;
   color: #e0e0e0;
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS (Additive Queries)
+   ============================================ */
+@media (max-width: 768px) {
+  .bottomRightYear {
+    display: none;
+  }
+}

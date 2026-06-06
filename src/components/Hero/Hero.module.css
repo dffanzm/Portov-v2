@@ -116,7 +116,7 @@
 .photoWrapper {
   position: absolute;
   bottom: 8vh; /* Shifted up slightly from 0 */
-  left: 44%; /* Shifted to match 60% column */
+  left: 43%; /* Fine-tuned alignment between 44% and 52% */
   transform: translateX(-50%);
   z-index: 5;
   display: flex;
@@ -504,5 +504,104 @@
   }
   .photoWrapper {
     bottom: 35vh;
+  }
+}
+
+/* ============================================
+   MOBILE RESPONSIVENESS (Additive Queries)
+   ============================================ */
+
+/* TABLET (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .heroProjectsCol {
+    top: 65%;
+    width: 25%;
+    right: 5%;
+  }
+  .nav {
+    right: 5%;
+    gap: 1.5rem;
+  }
+  .label {
+    left: 2rem;
+  }
+  .bgNameTop {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+  .bgPortfolio {
+    font-size: clamp(4rem, 12vw, 8rem);
+  }
+}
+
+/* MOBILE (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Text Layers */
+  .nameLayer {
+    width: 100%;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 0;
+  }
+  .portfolioLayer {
+    width: 100%;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 0;
+  }
+  .bgNameTop { font-size: clamp(2.5rem, 12vw, 4rem); }
+  .bgPortfolio { font-size: clamp(3.5rem, 15vw, 6rem); }
+  
+  /* Photo */
+  .photoWrapper {
+    top: auto;
+    bottom: 0vh;
+    left: 55%;
+    transform: translateX(-5%); /* Fine-tuning rightward shift */
+    width: auto;
+  }
+  .photo {
+    height: auto;
+    max-height: 60vh;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+  }
+
+  /* Hide right column projects entirely on mobile to save space */
+  .heroProjectsCol {
+    display: none;
+  }
+
+  /* Nav & Label */
+  .label {
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .nav {
+    top: auto;
+    bottom: 5rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    gap: 1rem;
+    flex-direction: row; 
+    align-items: center;
+  }
+  .navLink {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}
+
+/* SMALL MOBILE (max-width: 480px) */
+@media (max-width: 480px) {
+  .bgNameTop { font-size: clamp(2rem, 10vw, 3rem); }
+  .bgPortfolio { font-size: clamp(2.5rem, 15vw, 4rem); }
+  
+  .nav {
+    display: none;
   }
 }
