@@ -1,0 +1,144 @@
+.carouselRoot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.slideContainer {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.slideStrip {
+  display: flex;
+  width: max-content;
+}
+
+.slideWrapper {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  will-change: transform;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0 1rem;
+}
+
+.titleLabel {
+  font-size: 1.5rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+}
+
+.descLabel {
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  max-width: 90%;
+  line-height: 1.4;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.slideImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s ease;
+  will-change: transform;
+}
+
+.inactiveSlide {
+  filter: brightness(0.4);
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.controls {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  background-color: rgba(30, 30, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.arrowButton {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.arrowButton:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.arrowButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.arrowIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.dotsContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.dot {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  min-width: 8px;
+}
+
+.counter {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  font-family: 'Quicksand', sans-serif;
+}

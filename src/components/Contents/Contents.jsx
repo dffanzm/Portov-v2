@@ -88,6 +88,7 @@ export default function Contents() {
     if (id === 'about') direction = 'up';
     if (id === 'experience') direction = 'right';
     if (id === 'project') direction = 'left';
+    if (id === 'certifications') direction = 'down';
     
     setExitState({ direction });
     
@@ -209,10 +210,10 @@ export default function Contents() {
 
               <h2 className={styles.modalTitle}>
                 <span className={styles.alexBrushLetter}>T</span>
-                <span className={styles.timesNewRomanText}>ools</span>
+                <span className={styles.timesNewRomanText}>OOLS</span>
                 <span className={styles.alexBrushLetter} style={{ marginLeft: '1rem' }}>I</span>
                 <span className={styles.alexBrushLetter} style={{ marginLeft: '1rem' }}>U</span>
-                <span className={styles.timesNewRomanText}>se</span>
+                <span className={styles.timesNewRomanText}>SE</span>
               </h2>
               <p className={styles.modalSubtitle}>
                 The tools I reach for when designing and building digital products.

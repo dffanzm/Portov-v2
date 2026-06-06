@@ -139,7 +139,7 @@
 .menuItemWrapper:hover .menuText, .menuItemWrapper.active .menuText {
   color: #971616;
   font-size: 2.2rem;
-  text-shadow: 0 0 15px rgba(151, 22, 22, 0.4); 
+  text-shadow: 0 0 15px rgba(151, 22, 22, 0.4);
 }
 
 .menuItemWrapper:hover .menuNumber, .menuItemWrapper.active .menuNumber {

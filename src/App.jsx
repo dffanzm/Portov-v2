@@ -11,7 +11,7 @@ const AboutMePage = lazy(() => import('./components/AboutMe/AboutMe'))
 
 const ExperiencePage = lazy(() => import('./components/Experience/Experience'))
 const ProjectPage = lazy(() => import('./components/Project/Project'))
-const CertificationsPage = lazy(() => import('./components/Certifications/Certifications'))
+const CertificationsFinal = lazy(() => import('./components/Certifications/CertificationsFinal'))
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -48,7 +48,7 @@ function AnimatedRoutes() {
         <Route path="/about-me" element={<PageTransition direction={exitState.direction}><AboutMePage /></PageTransition>} />
         <Route path="/experience" element={<PageTransition direction={exitState.direction}><ExperiencePage /></PageTransition>} />
         <Route path="/project" element={<PageTransition direction={exitState.direction}><ProjectPage /></PageTransition>} />
-        <Route path="/certifications" element={<PageTransition direction={exitState.direction}><CertificationsPage /></PageTransition>} />
+        <Route path="/certifications" element={<PageTransition direction={exitState.direction}><CertificationsFinal /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   )

@@ -1,0 +1,71 @@
+.pageContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000000;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 1.2fr) 1fr;
+  gap: 4rem;
+  padding: 4rem;
+  color: #ffffff;
+  font-family: 'Quicksand', sans-serif;
+  box-sizing: border-box;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80vh;
+  position: sticky;
+  top: 10vh;
+  z-index: 10;
+}
+
+.bottomLeft {
+  margin-bottom: 1rem;
+}
+
+.middleColumn {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+}
+
+.pageTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.alexBrushLetter {
+  font-family: 'Alex Brush', cursive;
+  font-size: clamp(4.5rem, 9vw, 8rem);
+  color: #c0392b;
+  line-height: 0.7;
+  font-weight: 400;
+  transform: translateY(4px);
+  margin-right: 0.1em;
+}
+
+.timesNewRomanText {
+  font-family: 'Times New Roman MT Condensed', 'Times New Roman', Times, serif;
+  font-stretch: condensed;
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+  color: #c0392b;
+  font-weight: 400;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 80vh;
+  position: sticky;
+  top: 10vh;
+}

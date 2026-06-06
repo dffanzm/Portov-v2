@@ -14,6 +14,8 @@ const ProfileHeader = memo(function ProfileHeader() {
       setExitState({ direction: 'left' });
     } else if (location.pathname === '/project') {
       setExitState({ direction: 'right' });
+    } else if (location.pathname === '/certifications') {
+      setExitState({ direction: 'up' });
     } else {
       setExitState({ direction: 'none' });
     }

@@ -57,7 +57,7 @@ export default function Hero() {
 
       {/* ── Layer 3: PORTFOLIO text IN FRONT of photo ── */}
       <div className={styles.portfolioLayer} aria-hidden="true">
-        <span className={styles.bgPortfolio}>PORTFOLIO</span>
+        <span className={styles.bgPortfolio}>PORTOFOLIO</span>
       </div>
 
       {/* ── Bottom Fade for smooth transition into black ── */}
