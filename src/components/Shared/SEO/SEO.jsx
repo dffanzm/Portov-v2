@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 
-const DOMAIN = 'https://daffanajmudin.com'; // Placeholder, change to your actual domain
+const DOMAIN = 'https://daffa-portofolio.milesyourbae.workers.dev';
 
 export default function SEO({ 
   title = 'Daffa Najmudin Hanif — Portfolio', 

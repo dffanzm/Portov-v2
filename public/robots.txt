@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://daffanajmudin.com/sitemap.xml
+Sitemap: https://daffa-portofolio.milesyourbae.workers.dev/sitemap.xml
