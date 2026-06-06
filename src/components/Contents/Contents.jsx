@@ -109,10 +109,6 @@ export default function Contents() {
 
   return (
     <section className={styles.contentsSection} id="contents">
-      <SEO 
-        title="Contents | Daffa Najmudin Hanif" 
-        description="Navigate through my portfolio. Explore my experience, projects, tools, certifications, and get to know me better."
-      />
       <div className={styles.container}>
         
         {/* LEFT COLUMN */}

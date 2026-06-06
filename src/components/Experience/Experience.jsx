@@ -4,7 +4,7 @@ import { GraduationCap, Briefcase, Calendar } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import styles from './Experience.module.css';
 import ProfileHeader from '../Shared/ProfileHeader/ProfileHeader';
-import crownImg from '../../assets/crown.png';
+import crownImg from '../../assets/crown.webp';
 
 // --- DATA ---
 const contentData = {

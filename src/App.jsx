@@ -43,7 +43,7 @@ function AnimatedRoutes() {
   const { exitState } = useContext(TransitionContext);
   
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition direction={exitState.direction}><Home /></PageTransition>} />
         <Route path="/about-me" element={<PageTransition direction={exitState.direction}><AboutMePage /></PageTransition>} />

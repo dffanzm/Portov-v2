@@ -2,7 +2,8 @@ import React, { useRef, useState, useEffect, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useInView } from 'framer-motion'
 import styles from './Hero.module.css'
-import profilePhoto from '../../assets/hero.png'
+import profilePhotoPng from '../../assets/hero.png'
+import profilePhotoWebp from '../../assets/hero.webp'
 import project1 from '../../assets/1 (1).webp'
 import project2 from '../../assets/2 (1).webp'
 import SEO from '../Shared/SEO/SEO'
@@ -35,8 +36,8 @@ export default function Hero() {
   return (
     <section className={styles.hero} id="hero" ref={ref}>
       <SEO 
-        title="Daffa Najmudin Hanif — Portfolio" 
-        description="Creative full-stack developer and UI/UX designer. Explore my portfolio, projects, and professional journey."
+        title="Daffa Najmudin Hanif — Portofolio" 
+        description="Creative full-stack developer and UI/UX designer. Explore my portofolio, projects, and professional journey."
       />
       {/* Ambient vignette overlay */}
       <div className={styles.vignette} aria-hidden="true" />
@@ -44,7 +45,7 @@ export default function Hero() {
       {/* Red ambient glow behind photo */}
       <div className={styles.glow} aria-hidden="true" />
 
-      <React.Fragment key={isInView ? 'visible' : 'hidden'}>
+      <React.Fragment>
 
       {/* ── Layer 1: Name text BEHIND photo ── */}
       <div className={styles.nameLayer} aria-hidden="true">
@@ -53,14 +54,18 @@ export default function Hero() {
 
       {/* ── Layer 2: Profile Photo ── */}
       <div className={styles.photoWrapper}>
-        <img
-          src={profilePhoto}
-          alt="Daffa Najmudin Hanif"
-          className={styles.photo}
-          draggable="false"
-          fetchPriority="high"
-          decoding="sync"
-        />
+        <picture>
+          <source srcSet={profilePhotoWebp} type="image/webp" />
+          <img
+            src={profilePhotoPng}
+            alt="Daffa Najmudin Hanif"
+            className={styles.photo}
+            draggable="false"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
       </div>
 
       {/* ── Layer 3: PORTFOLIO text IN FRONT of photo ── */}
@@ -82,13 +87,13 @@ export default function Hero() {
         {/* Top-right navigation */}
         <nav className={styles.nav} aria-label="Main navigation">
           <a href="#contents" onClick={scrollToContents} className={`${styles.navLink} ${!navLoaded ? styles.skeleton : ''}`}>CONTENTS</a>
-          <Link to="/project" className={`${styles.navLink} ${!navLoaded ? styles.skeleton : ''}`}>PROJECT</Link>
           <Link to="/experience" className={`${styles.navLink} ${!navLoaded ? styles.skeleton : ''}`}>EXPERIENCE</Link>
+          <Link to="/project" className={`${styles.navLink} ${!navLoaded ? styles.skeleton : ''}`}>PROJECT</Link>
         </nav>
 
         {/* Right column: Top Projects Placeholder (Images Only) */}
         <div className={styles.heroProjectsCol}>
-          <a href="#" className={styles.heroProjectCard} aria-label="Project 1">
+          <div className={styles.heroProjectCard} aria-label="Project 1">
             <div className={styles.heroProjectImage}>
               {!img1Loaded && <div className={styles.skeletonImg} />}
               <img 
@@ -102,9 +107,9 @@ export default function Hero() {
                 style={{ opacity: img1Loaded ? 1 : 0 }}
               />
             </div>
-          </a>
+          </div>
 
-          <a href="#" className={styles.heroProjectCard} aria-label="Project 2">
+          <div className={styles.heroProjectCard} aria-label="Project 2">
             <div className={styles.heroProjectImage}>
               {!img2Loaded && <div className={styles.skeletonImg} />}
               <img 
@@ -118,7 +123,7 @@ export default function Hero() {
                 style={{ opacity: img2Loaded ? 1 : 0 }}
               />
             </div>
-          </a>
+          </div>
         </div>
 
         {/* Scroll trigger */}
