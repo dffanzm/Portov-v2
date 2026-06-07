@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 
-const DOMAIN = 'https://daffa-portofolio.milesyourbae.workers.dev';
+const DOMAIN = 'https://v2.daffa-portofolio.workers.dev';
 
 export default function SEO({ 
   title = 'Daffa Najmudin Hanif — Portfolio', 

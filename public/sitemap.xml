@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://daffa-portofolio.milesyourbae.workers.dev</loc>
+    <loc>https://v2.daffa-portofolio.workers.dev</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://daffa-portofolio.milesyourbae.workers.dev/contents</loc>
+    <loc>https://v2.daffa-portofolio.workers.dev/contents</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://daffa-portofolio.milesyourbae.workers.dev/about-me</loc>
+    <loc>https://v2.daffa-portofolio.workers.dev/about-me</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://daffa-portofolio.milesyourbae.workers.dev/experience</loc>
+    <loc>https://v2.daffa-portofolio.workers.dev/experience</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://daffa-portofolio.milesyourbae.workers.dev/project</loc>
+    <loc>https://v2.daffa-portofolio.workers.dev/project</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://daffa-portofolio.milesyourbae.workers.dev/certifications</loc>
+    <loc>https://v2.daffa-portofolio.workers.dev/certifications</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://daffa-portofolio.milesyourbae.workers.dev/trace</loc>
+    <loc>https://v2.daffa-portofolio.workers.dev/trace</loc>
     <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
