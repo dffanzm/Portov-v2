@@ -171,9 +171,9 @@ export default function Contents() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
         >
           <div className={styles.topRightNav}>
-            <span className={styles.navLink}>Get My CV</span>
-            <span className={styles.navLink}>Github</span>
-            <span className={styles.navLink}>LinkedIn</span>
+            <a href="https://drive.google.com/drive/folders/1Mcu43W8xJ3K1SyU6qYG0KcKl7U6kCboG?usp=sharing" target="_blank" rel="noopener noreferrer" className={styles.navLink}>Get My CV</a>
+            <a href="https://github.com/dffanzm" target="_blank" rel="noopener noreferrer" className={styles.navLink}>Github</a>
+            <a href="https://www.linkedin.com/in/daffa-najmudin-hanif" target="_blank" rel="noopener noreferrer" className={styles.navLink}>LinkedIn</a>
           </div>
 
           <div className={styles.aboutImageWrapper}>
