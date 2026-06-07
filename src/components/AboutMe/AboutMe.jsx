@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
 import styles from './AboutMe.module.css'
@@ -6,6 +6,7 @@ import ProfileHeader from '../Shared/ProfileHeader/ProfileHeader'
 import RoleTypewriter from '../Shared/RoleTypewriter/RoleTypewriter'
 import YearText from '../Shared/YearText/YearText'
 import SEO from '../Shared/SEO/SEO'
+import ContactModal from '../Shared/ContactModal/ContactModal'
 
 export default function AboutMe() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -40,9 +41,7 @@ export default function AboutMe() {
     setSearchParams({ lang: newLang }, { replace: true })
   }
 
-  const handleDiscussClick = () => {
-    window.open('https://wa.me/6283115450410', '_blank');
-  };
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const t = content[lang]
 
@@ -175,7 +174,7 @@ export default function AboutMe() {
                   </div>
 
                   <div className={styles.buttonWrapper}>
-                    <button className={styles.discussBtn}>
+                    <button className={styles.discussBtn} onClick={() => setIsContactOpen(true)}>
                       <span>{t.button}</span>
                       <svg 
                         width="18" height="18" viewBox="0 0 24 24" fill="none" 
@@ -195,6 +194,7 @@ export default function AboutMe() {
         </m.div>
 
       </div>
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </section>
   )
 }

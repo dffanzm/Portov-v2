@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import styles from './Project.module.css';
 import ProfileHeader from '../Shared/ProfileHeader/ProfileHeader';
+import ContactModal from '../Shared/ContactModal/ContactModal';
 
 import project1 from '../../assets/assets-project/project1.webp';
 import project2 from '../../assets/assets-project/project2.webp';
@@ -102,6 +103,7 @@ import SEO from '../Shared/SEO/SEO';
 
 export default function Project() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   // Animasi masuk untuk baris per baris
   const containerVariants = {
@@ -200,7 +202,7 @@ export default function Project() {
         {projectsData.map((project) => {
           if (project.type === "info_block") {
             return (
-              <m.div key={project.id} className={`${styles.gridItem} ${project.gridClass}`} variants={itemVariants}>
+              <m.div key={project.id} className={`${styles.gridItem} ${project.gridClass}`} variants={itemVariants} onClick={() => setIsContactOpen(true)} style={{ cursor: 'pointer' }}>
                 <div className={styles.infoContent}>
                   <span className={styles.infoTitle}>Looking for More?</span>
                   <div className={styles.infoAccent}></div>
@@ -285,6 +287,7 @@ export default function Project() {
         )}
       </AnimatePresence>
 
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
     </section>
   );
 }

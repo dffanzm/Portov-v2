@@ -1,0 +1,193 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(10, 10, 10, 0.92);
+  padding: 1.5rem;
+}
+
+.modal {
+  background: #111111;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+.title {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  margin-bottom: 0.3rem;
+}
+
+.alexBrush {
+  font-family: 'Alex Brush', cursive;
+  font-size: 3.5rem;
+  color: #c0392b;
+  line-height: 0.7;
+  font-weight: 400;
+  transform: translateY(5px);
+}
+
+.serif {
+  font-family: 'Times New Roman MT Condensed', 'Times New Roman', Times, serif;
+  font-size: 2.2rem;
+  color: #c0392b;
+  font-weight: 400;
+}
+
+.subtitle {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  color: #888888;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.linksGrid {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.contactCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  color: #e0e0e0;
+  flex: 1;
+  min-width: 0;
+  transition: border-color 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.contactCard:hover {
+  border-color: var(--accent, #c0392b);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contactCard:hover .iconCircle {
+  color: var(--accent, #c0392b);
+  border-color: var(--accent, #c0392b);
+  box-shadow: 0 0 20px rgba(192, 57, 43, 0.15);
+}
+
+.iconCircle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.linkName {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.linkLabel {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.72rem;
+  color: #888888;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .modal {
+    padding: 2rem 1.2rem;
+    max-width: 95vw;
+  }
+
+  .alexBrush {
+    font-size: 2.8rem;
+  }
+
+  .serif {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .linksGrid {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .contactCard {
+    flex-direction: row;
+    padding: 1rem 1.2rem;
+    gap: 1rem;
+  }
+
+  .iconCircle {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+
+  .iconCircle svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .linkName {
+    font-size: 0.9rem;
+  }
+
+  .linkLabel {
+    text-align: left;
+    font-size: 0.7rem;
+  }
+}
