@@ -7,7 +7,7 @@ const DOMAIN = 'https://v2.daffa-portofolio.workers.dev';
 export default function SEO({ 
   title = 'Daffa Najmudin Hanif — Portfolio', 
   description = 'Daffa Najmudin Hanif - Portfolio. Creative designer and full-stack developer showcasing projects, experience, and skills.',
-  keywords = 'portfolio, Daffa Najmudin Hanif, developer, designer, react, full stack',
+  keywords = 'Daffa Najmudin Hanif, portfolio, Daffa Najmudin, Daffa Hanif, developer, designer, react, full stack',
   type = 'website',
   image = '/hero.png' // Fallback OG image
 }) {
