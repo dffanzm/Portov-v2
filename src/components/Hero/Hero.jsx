@@ -34,7 +34,7 @@ export default function Hero() {
   };
 
   return (
-    <section className={styles.hero} id="hero" ref={ref}>
+    <section className={`${styles.hero} ${isInView ? styles.inView : styles.outOfView}`} id="hero" ref={ref}>
       <SEO 
         title="Daffa Najmudin Hanif — Portofolio" 
         description="Creative full-stack developer and UI/UX designer. Explore my portofolio, projects, and professional journey."

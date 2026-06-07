@@ -390,6 +390,50 @@
   left: 0;
   z-index: 1;
 }
+/* ============================================
+   SCROLL RE-ENTRY ANIMATIONS
+   Uses parent class to transition children.
+   No layout changes — only opacity + transform.
+   ============================================ */
+.hero .nameLayer,
+.hero .portfolioLayer,
+.hero .photoWrapper,
+.hero .label,
+.hero .nav,
+.hero .heroProjectsCol,
+.hero .scrollTrigger {
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.outOfView .nameLayer {
+  opacity: 0;
+  transform: translateY(-50%) scale(0.95) translateX(-20px);
+}
+.outOfView .portfolioLayer {
+  opacity: 0;
+  transform: translateY(-50%) translateX(-20px);
+}
+.outOfView .photoWrapper {
+  opacity: 0;
+  transform: translateX(-50%) translateY(30px);
+}
+.outOfView .label {
+  opacity: 0;
+  transform: translateX(-15px);
+}
+.outOfView .nav {
+  opacity: 0;
+  transform: translateX(15px);
+}
+.outOfView .heroProjectsCol {
+  opacity: 0;
+  transform: translateY(-50%) translateX(30px);
+}
+.outOfView .scrollTrigger {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+}
 
 /* ============================================
    RESPONSIVE — Consolidated breakpoints
